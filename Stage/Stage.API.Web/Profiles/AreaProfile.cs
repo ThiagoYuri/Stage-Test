@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Stage.API.DAL.Models;
-using Stage.API.Web.Data.Empresa;
+using Stage.API.Web.Data.Area;
 
 namespace Stage.API.Web.Profiles
 {

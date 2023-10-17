@@ -16,14 +16,6 @@ namespace Stage.API.DAL.Models
         /// </summary>
         [Required]
         public string Nome { get; set; }
-        /// <summary>
-        /// Empresas 
-        /// </summary>
-        /// 
-        [ForeignKey("PK_Empresa")]
-        public virtual List<Empresa>? Empresa { get; set; }
-        public int? PK_Empresa { get; set; }
-
 
     }
 }

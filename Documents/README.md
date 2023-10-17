@@ -29,3 +29,6 @@ de mostrar essa informação é um diferencial.
 
 
 ## Novas Features
+* Validação Empresa CNPJ
+* Caso queira monetizar esse serviço, Criar um sistema de login. (Segurança e Monetização)
+* 

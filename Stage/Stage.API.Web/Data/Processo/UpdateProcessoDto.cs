@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Stage.API.Web.Data.Empresa
+namespace Stage.API.Web.Data.Processo
 {
-    public class UpdateEmpresaDto
+    public class UpdateProcessoDto
     {
         [Required]
         public string Nome { get; set; }

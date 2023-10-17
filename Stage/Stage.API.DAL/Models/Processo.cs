@@ -47,13 +47,6 @@ namespace Stage.API.DAL.Models
         public virtual Area Area { get; set;}
         public int? PK_Area { get; set; }
 
-        /// <summary>
-        /// Empresa que o processo está relacionada
-        /// </summary>
-        [Required]
-        [ForeignKey("PK_Empresa")]
-        public virtual Empresa Empresa { get; set; }
-        public int? PK_Empresa { get; set; }
 
 
     }

@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 
 
 builder.Services.AddDbContext<Context>(opt => opt.UseLazyLoadingProxies().UseSqlServer(builder.Configuration["Stage:ConnectionString"]));
-builder.Services.AddScoped<EmpresaServices, EmpresaServices>();
+builder.Services.AddScoped<AreaServices, AreaServices>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 

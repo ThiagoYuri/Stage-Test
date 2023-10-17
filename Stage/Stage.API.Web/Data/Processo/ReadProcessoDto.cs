@@ -1,12 +1,15 @@
 ﻿using Stage.API.DAL.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Stage.API.Web.Data.Area;
 
-namespace Stage.API.Web.Data.Empresa
+namespace Stage.API.Web.Data.Processo
 {
-    public class ReadEmpresaDto
+    public class ReadProcessoDto
     {
         public int Id { get; private set; }       
-        public string Nome { get; set; }    
+        public string Nome { get; set; }
+
+
     }
 }
