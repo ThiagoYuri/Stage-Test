@@ -10,6 +10,8 @@ namespace Stage.API.Web.Profiles
         {
             CreateMap<CreateEmpresaDto, Empresa>();
             CreateMap<Empresa, ReadEmpresaDto>();
+            CreateMap<UpdateEmpresaDto, Empresa>();
+
         }
     }
 }

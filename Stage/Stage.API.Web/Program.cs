@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 
-builder.Services.AddDbContext<Context>(opt => opt.UseLazyLoadingProxies().UseSqlServer(@"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Stage;Data Source=THIAGOYURI;TrustServerCertificate=True"));
+builder.Services.AddDbContext<Context>(opt => opt.UseLazyLoadingProxies().UseSqlServer(builder.Configuration["Stage:ConnectionString"]));
 builder.Services.AddScoped<EmpresaServices, EmpresaServices>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

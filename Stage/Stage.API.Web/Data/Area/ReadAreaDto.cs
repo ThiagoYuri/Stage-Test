@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Stage.API.Web.Data.Empresa
+namespace Stage.API.Web.Data.Area
 {
-    public class ReadEmpresaDto
+    public class ReadAreaDto
     {
         public int Id { get; private set; }       
         public string Nome { get; set; }    

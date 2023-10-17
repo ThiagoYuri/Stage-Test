@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentResults;
 using Stage.API.DAL;
 using Stage.API.DAL.Models;
 using Stage.API.Web.Data.Empresa;
@@ -24,6 +25,7 @@ namespace Stage.API.Web.Services
             _context.SaveChanges();
             return _mapper.Map<ReadEmpresaDto>(empresa);
         }
+
         public ReadEmpresaDto RecuperaEmpresaPorId(int id)
         {
             Empresa empresa = _context.Empresas.FirstOrDefault(empresa => empresa.Id == id);
@@ -33,6 +35,28 @@ namespace Stage.API.Web.Services
             }
             return null;
         }
+
+        public Result AtualizaEmpresa(int id, UpdateEmpresaDto empresaDto)
+        {
+            Empresa empresa = _context.Empresas.FirstOrDefault(empresa => empresa.Id == id);
+            if (empresa != null)
+                return Result.Fail("Empresa não encontrado");
+            _mapper.Map(empresaDto, empresa);
+            _context.SaveChanges();
+            return Result.Ok();
+        }
+
+
+        public Result RemoverEmpresaPorId(int id)
+        {
+            Empresa empresa = _context.Empresas.FirstOrDefault(empresa => empresa.Id == id);
+            if (empresa == null)
+                return Result.Fail("Empresa não encontrado");
+            _context.Remove(empresa);
+            _context.SaveChanges();
+            return Result.Ok();
+        }
+
 
     }
 }

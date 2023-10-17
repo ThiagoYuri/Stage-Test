@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="API.DAL\" />
     <Folder Include="API.Web\" />
   </ItemGroup>
 
