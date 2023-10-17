@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stage.API.DAL;
 
@@ -11,9 +12,11 @@ using Stage.API.DAL;
 namespace Stage.API.DAL.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231017015328_updt processo")]
+    partial class updtprocesso
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,10 +83,10 @@ namespace Stage.API.DAL.Migrations
                     b.Property<int?>("PK_Area")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("PK_Processos")
+                        .HasColumnType("int");
 
-                    b.HasIndex("CNPJ")
-                        .IsUnique();
+                    b.HasKey("Id");
 
                     b.ToTable("Empresa");
                 });
@@ -108,6 +111,9 @@ namespace Stage.API.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
+                    b.Property<int?>("PK_Processos")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ProcessoPaiId")
                         .HasColumnType("int");
 
@@ -119,6 +125,8 @@ namespace Stage.API.DAL.Migrations
                     b.HasIndex("PK_Area");
 
                     b.HasIndex("PK_Empresa");
+
+                    b.HasIndex("PK_Processos");
 
                     b.HasIndex("ProcessoPaiId");
 
@@ -154,6 +162,10 @@ namespace Stage.API.DAL.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("Stage.API.DAL.Models.Empresa", null)
+                        .WithMany("Processos")
+                        .HasForeignKey("PK_Processos");
+
                     b.HasOne("Stage.API.DAL.Models.Processo", "ProcessoPai")
                         .WithMany("SubProcessos")
                         .HasForeignKey("ProcessoPaiId");
@@ -163,6 +175,11 @@ namespace Stage.API.DAL.Migrations
                     b.Navigation("Empresa");
 
                     b.Navigation("ProcessoPai");
+                });
+
+            modelBuilder.Entity("Stage.API.DAL.Models.Empresa", b =>
+                {
+                    b.Navigation("Processos");
                 });
 
             modelBuilder.Entity("Stage.API.DAL.Models.Processo", b =>

@@ -31,12 +31,12 @@ namespace Stage.API.DAL.Models
         /// Caso tenha o processo e conciderado um Sub-processo, caso não tenha o processo e conciderado Processo-Pai
         /// </summary>
         ///  
-        public Processo? ProcessoPai { get; set; }
+        public virtual Processo? ProcessoPai { get; set; }
 
         /// <summary>
         /// Sub-Processos
         /// </summary>
-        public List<Processo>? SubProcessos { get; set; }
+        public virtual List<Processo>? SubProcessos { get; set; }
 
 
         /// <summary>

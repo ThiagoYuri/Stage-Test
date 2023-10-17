@@ -19,6 +19,10 @@ namespace Stage.API.DAL.Models
         [Required]
         public string Nome { get; set; }
 
+        [Required, MinLength(14) , MaxLength(14)]
+        [Index(IsUnique = true)]
+        public string CNPJ { get; set; }
+
 
         /// <summary>
         /// Lista de Areas que a empresa tem
@@ -27,13 +31,6 @@ namespace Stage.API.DAL.Models
         [ForeignKey("PK_Area")]
         public virtual List<Area>? Areas { get; set; }
         public int? PK_Area { get; set; }
-
-
-
-        /// <summary>
-        /// Lista de todos os processos que a empresa tem
-        /// </summary>
-        public List<Processo>? Processos { get; set; }
 
 
     }
