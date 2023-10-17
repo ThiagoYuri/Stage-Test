@@ -31,21 +31,22 @@ namespace Stage.API.DAL.Models
         /// Caso tenha o processo e conciderado um Sub-processo, caso não tenha o processo e conciderado Processo-Pai
         /// </summary>
         ///  
+        [ForeignKey("PK_ProcessoPai")]
         public virtual Processo? ProcessoPai { get; set; }
+        public int? PK_ProcessoPai { get; set; }
 
-        /// <summary>
-        /// Sub-Processos
-        /// </summary>
-        public virtual List<Processo>? SubProcessos { get; set; }
+        public int Ordem { get; set; }
+
+        public virtual List<Processo?> SubProcessos { get; set; }
 
 
         /// <summary>
         /// Area que o processo está relacionada
         /// </summary>
-        [Required]
-        [ForeignKey("PK_Area")]
-        public virtual Area Area { get; set;}
-        public int? PK_Area { get; set; }
+
+        [Required,ForeignKey("PK_Area")]
+        public virtual Area? Area { get; set;}
+        public int PK_Area { get; set; }
 
 
 

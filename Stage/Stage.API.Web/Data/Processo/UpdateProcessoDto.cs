@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Stage.API.DAL.Models.Enum;
+using System.ComponentModel.DataAnnotations;
 
 namespace Stage.API.Web.Data.Processo
 {
@@ -6,7 +7,14 @@ namespace Stage.API.Web.Data.Processo
     {
         [Required]
         public string Nome { get; set; }
-        [Required, MinLength(14), MaxLength(14)]
-        public string CNPJ { get; set; }
+        [Required]
+        public TipoProcesso TipoProcesso { get; set; }
+
+        public int Ordem { get; set; }
+
+        public int? PK_ProcessoPai { get; set; }
+
+        [Required]
+        public int PK_Area { get; set; }
     }
 }

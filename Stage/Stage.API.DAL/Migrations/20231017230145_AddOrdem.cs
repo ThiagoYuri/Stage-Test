@@ -5,26 +5,25 @@
 namespace Stage.API.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class updtempesa : Migration
+    public partial class AddOrdem : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "CNPJ",
-                table: "Empresa",
-                type: "nvarchar(14)",
-                maxLength: 14,
+            migrationBuilder.AddColumn<int>(
+                name: "Ordem",
+                table: "Processo",
+                type: "int",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: 0);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "CNPJ",
-                table: "Empresa");
+                name: "Ordem",
+                table: "Processo");
         }
     }
 }

@@ -14,6 +14,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<Context>(opt => opt.UseLazyLoadingProxies().UseSqlServer(builder.Configuration["Stage:ConnectionString"]));
 builder.Services.AddScoped<AreaServices, AreaServices>();
+builder.Services.AddScoped<ProcessoServices, ProcessoServices>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 

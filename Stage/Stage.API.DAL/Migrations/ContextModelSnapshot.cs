@@ -54,11 +54,13 @@ namespace Stage.API.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PK_Area")
-                        .IsRequired()
+                    b.Property<int>("Ordem")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProcessoPaiId")
+                    b.Property<int>("PK_Area")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PK_ProcessoPai")
                         .HasColumnType("int");
 
                     b.Property<int>("TipoProcesso")
@@ -68,7 +70,7 @@ namespace Stage.API.DAL.Migrations
 
                     b.HasIndex("PK_Area");
 
-                    b.HasIndex("ProcessoPaiId");
+                    b.HasIndex("PK_ProcessoPai");
 
                     b.ToTable("Processo");
                 });
@@ -76,18 +78,23 @@ namespace Stage.API.DAL.Migrations
             modelBuilder.Entity("Stage.API.DAL.Models.Processo", b =>
                 {
                     b.HasOne("Stage.API.DAL.Models.Area", "Area")
-                        .WithMany()
+                        .WithMany("Processos")
                         .HasForeignKey("PK_Area")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Stage.API.DAL.Models.Processo", "ProcessoPai")
                         .WithMany("SubProcessos")
-                        .HasForeignKey("ProcessoPaiId");
+                        .HasForeignKey("PK_ProcessoPai");
 
                     b.Navigation("Area");
 
                     b.Navigation("ProcessoPai");
+                });
+
+            modelBuilder.Entity("Stage.API.DAL.Models.Area", b =>
+                {
+                    b.Navigation("Processos");
                 });
 
             modelBuilder.Entity("Stage.API.DAL.Models.Processo", b =>

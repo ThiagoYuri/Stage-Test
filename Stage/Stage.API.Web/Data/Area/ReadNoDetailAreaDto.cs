@@ -4,11 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Stage.API.Web.Data.Area
 {
-    public class ReadAreaDto
+    public class ReadNoDetailAreaDto
     {
         public int Id { get; private set; }       
         public string Nome { get; set; }    
-
-        public List<DAL.Models.Processo> Processos { get; set; }
     }
 }

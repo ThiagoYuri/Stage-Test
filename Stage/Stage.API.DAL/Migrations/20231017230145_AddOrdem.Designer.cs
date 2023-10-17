@@ -12,8 +12,8 @@ using Stage.API.DAL;
 namespace Stage.API.DAL.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231017021033_CNPJ unique")]
-    partial class CNPJunique
+    [Migration("20231017230145_AddOrdem")]
+    partial class AddOrdem
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,21 +28,6 @@ namespace Stage.API.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AreaEmpresa", b =>
-                {
-                    b.Property<int>("PK_Area")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PK_Empresa")
-                        .HasColumnType("int");
-
-                    b.HasKey("PK_Area", "PK_Empresa");
-
-                    b.HasIndex("PK_Empresa");
-
-                    b.ToTable("AreaEmpresa");
-                });
-
             modelBuilder.Entity("Stage.API.DAL.Models.Area", b =>
                 {
                     b.Property<int>("Id")
@@ -55,40 +40,9 @@ namespace Stage.API.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PK_Empresa")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Area");
-                });
-
-            modelBuilder.Entity("Stage.API.DAL.Models.Empresa", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CNPJ")
-                        .IsRequired()
-                        .HasMaxLength(14)
-                        .HasColumnType("nvarchar(14)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PK_Area")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CNPJ")
-                        .IsUnique();
-
-                    b.ToTable("Empresa");
                 });
 
             modelBuilder.Entity("Stage.API.DAL.Models.Processo", b =>
@@ -103,15 +57,13 @@ namespace Stage.API.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PK_Area")
-                        .IsRequired()
+                    b.Property<int>("Ordem")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PK_Empresa")
-                        .IsRequired()
+                    b.Property<int>("PK_Area")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProcessoPaiId")
+                    b.Property<int?>("PK_ProcessoPai")
                         .HasColumnType("int");
 
                     b.Property<int>("TipoProcesso")
@@ -121,51 +73,31 @@ namespace Stage.API.DAL.Migrations
 
                     b.HasIndex("PK_Area");
 
-                    b.HasIndex("PK_Empresa");
-
-                    b.HasIndex("ProcessoPaiId");
+                    b.HasIndex("PK_ProcessoPai");
 
                     b.ToTable("Processo");
-                });
-
-            modelBuilder.Entity("AreaEmpresa", b =>
-                {
-                    b.HasOne("Stage.API.DAL.Models.Empresa", null)
-                        .WithMany()
-                        .HasForeignKey("PK_Area")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Stage.API.DAL.Models.Area", null)
-                        .WithMany()
-                        .HasForeignKey("PK_Empresa")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Stage.API.DAL.Models.Processo", b =>
                 {
                     b.HasOne("Stage.API.DAL.Models.Area", "Area")
-                        .WithMany()
+                        .WithMany("Processos")
                         .HasForeignKey("PK_Area")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Stage.API.DAL.Models.Empresa", "Empresa")
-                        .WithMany()
-                        .HasForeignKey("PK_Empresa")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Stage.API.DAL.Models.Processo", "ProcessoPai")
                         .WithMany("SubProcessos")
-                        .HasForeignKey("ProcessoPaiId");
+                        .HasForeignKey("PK_ProcessoPai");
 
                     b.Navigation("Area");
 
-                    b.Navigation("Empresa");
-
                     b.Navigation("ProcessoPai");
+                });
+
+            modelBuilder.Entity("Stage.API.DAL.Models.Area", b =>
+                {
+                    b.Navigation("Processos");
                 });
 
             modelBuilder.Entity("Stage.API.DAL.Models.Processo", b =>

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Stage.API.DAL.Models
 {
@@ -16,6 +17,12 @@ namespace Stage.API.DAL.Models
         /// </summary>
         [Required]
         public string Nome { get; set; }
+
+        /// <summary>
+        /// Processos
+        /// </summary>
+        [JsonIgnore]
+        public virtual List<Processo>? Processos { get; set; }
 
     }
 }

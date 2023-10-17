@@ -23,15 +23,8 @@ namespace Stage.API.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            #region Processo
-            modelBuilder.Entity<Processo>()
-            .HasOne(e => e.Area)
-            .WithMany()
-            .HasForeignKey(e => e.PK_Area)
-            .OnDelete(DeleteBehavior.NoAction);
-            #endregion
 
-         
+
 
         }
 

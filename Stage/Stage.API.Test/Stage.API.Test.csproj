@@ -23,7 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="API.Web\" />
+    <Folder Include="API.Web\API\" />
+    <Folder Include="API.Web\Services\" />
   </ItemGroup>
 
 </Project>

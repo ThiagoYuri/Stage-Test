@@ -44,6 +44,16 @@ namespace Stage.API.Web.Controllers
             return NotFound();
         }
 
+        [HttpGet("all")]
+        public async Task<ActionResult> RecuperaTodasArea()
+        {
+            IEnumerable<ReadNoDetailAreaDto> areas = _areaService.RecuperaTodosArea();
+            if (areas != null)
+                return Ok(areas);
+            return NotFound();
+        }
+
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> RemoverAreaPorId(int id)
         {

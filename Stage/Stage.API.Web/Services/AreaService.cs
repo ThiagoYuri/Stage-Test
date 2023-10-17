@@ -36,6 +36,16 @@ namespace Stage.API.Web.Services
             return null;
         }
 
+        public IEnumerable<ReadNoDetailAreaDto> RecuperaTodosArea()
+        {
+            List<Area> areas = _context.Areas.ToList();
+            if (areas != null)
+            {
+                return _mapper.Map<List<ReadNoDetailAreaDto>>(areas);
+            }
+            return null;
+        }
+
         public Result AtualizaArea(int id, UpdateAreaDto areaDto)
         {
             Area area = _context.Areas.FirstOrDefault(area => area.Id == id);
