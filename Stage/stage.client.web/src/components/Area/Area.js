@@ -21,19 +21,21 @@ export class Area extends Component {
         }).catch((err) => {
             console.log('error2', err);
         });
-
         console.log(result)
-
-
     }
 
     render() {
         let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : <CreateList columns={["Id", "Nome"]} datas={this.state.areas}></CreateList>;
+            ? <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            : <CreateList columns={["Id","Nome"]} datas={this.state.areas}></CreateList>;
         return (
             <div>
-                <h1 id="tabelLabel" >Areas</h1>
+                <h1 id="tabelLabel" className='align-center'>Areas</h1>
+                <div className="d-flex align-items-end">
+                    <div><button className='m-2 btn btn-success'>Criar nova Area</button></div>
+                </div>
                 {contents}
             </div>
         );

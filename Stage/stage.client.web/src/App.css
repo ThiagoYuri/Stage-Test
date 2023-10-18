@@ -1,4 +1,7 @@
-.App {
+.align-center {
   text-align: center;
 }
 
+.align-end {
+  text-align: end;
+}
