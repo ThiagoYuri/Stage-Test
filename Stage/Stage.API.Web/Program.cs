@@ -5,7 +5,19 @@ using System;
 using Stage.API.Web.Services;
 using Microsoft.OpenApi.Models;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:3000",
+                                              "http://www.contoso.com");
+                      });
+});
 
 // Add services to the container.
 
@@ -37,6 +49,7 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 
