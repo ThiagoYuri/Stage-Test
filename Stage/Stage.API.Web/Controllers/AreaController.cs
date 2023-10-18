@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Stage.API.DAL;
 using Stage.API.Web.Data.Area;
 using Stage.API.Web.Services;
+using System.Collections.Generic;
 
 namespace Stage.API.Web.Controllers
 {
@@ -49,7 +50,9 @@ namespace Stage.API.Web.Controllers
         {
             IEnumerable<ReadNoDetailAreaDto> areas = _areaService.RecuperaTodosArea();
             if (areas != null)
-                return Ok(areas);
+                foreach (ReadNoDetailAreaDto res in areas)                
+                    Console.WriteLine(res.Id+","+ res.Nome);
+                return Ok(Json(areas));
             return NotFound();
         }
 
