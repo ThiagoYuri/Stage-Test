@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { getData } from '../FetchData'
 import { CreateList } from '../Fragment/List/ListRoot';
+import { Link } from 'react-router-dom';
+
 export class Area extends Component {
     constructor(props) {
         super(props);
@@ -26,15 +28,17 @@ export class Area extends Component {
 
     render() {
         let contents = this.state.loading
-            ? <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            : <CreateList columns={["Id","Nome"]} datas={this.state.areas}></CreateList>;
+            ? <div className="spinner-border text-primary align-center" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>
+            : <CreateList columns={["Id", "Nome"]} datas={this.state.areas}></CreateList>;
         return (
             <div>
                 <h1 id="tabelLabel" className='align-center'>Areas</h1>
                 <div className="d-flex align-items-end">
-                    <div><button className='m-2 btn btn-success'>Criar nova Area</button></div>
+                    <div>
+                    <Link to="/AdicionarArea"><button className='m-2 btn btn-success' >Criar nova Area</button></Link>
+                    </div>
                 </div>
                 {contents}
             </div>

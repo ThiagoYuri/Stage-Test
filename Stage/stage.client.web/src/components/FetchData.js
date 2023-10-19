@@ -25,11 +25,13 @@ const getData = async (url) => {
 
 const postData = async (url, data) => {
     console.log(data)
+    var result = false;
     await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
+        mode: 'cors',
         body: JSON.stringify(data)
     })
         .then(response => {
@@ -41,8 +43,9 @@ const postData = async (url, data) => {
         })
         .then(data => {
             console.log('Cliente criado com sucesso:', data);
-            // Você pode fazer algo com a resposta da API aqui
+            // Vocï¿½ pode fazer algo com a resposta da API aqui
         });
+    return result 
 }
 
 export { getData, postData }
