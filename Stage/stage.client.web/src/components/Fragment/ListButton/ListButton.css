@@ -46,9 +46,28 @@ li {
     border-radius: 0.25rem;
     overflow: hidden;
     background-color: white;
+    user-select: none;
 }
 
+/* Efeito de hover */
+li:hover {
+    background-color: #d4f8d1;
+    /* Cor de fundo mais escura no hover */
+}
 
+/* Efeito de foco (para acessibilidade) */
+li:focus {
+    outline: none;
+    /* Remove a borda de foco padrão */
+    background-color: #c4f8db;
+    /* Cor de fundo mais escura no foco */
+}
+
+/* Estilo ativo (quando clicado) */
+li:active {
+    background-color: #b5def5;
+    /* Cor de fundo mais escura no clique */
+}
 
 li::before {
     content: '';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { getData} from '../FetchData'
-import { CreateList } from '../Fragment/ListButton/ListButtonRoot';
+import { getData, deleteData} from '../FetchData'
+import { CreateList } from '../Fragment/List/ListRoot';
 import { Link } from 'react-router-dom';
 
 
@@ -10,7 +10,7 @@ export class Area extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            areas: [],
+            areas: {},
             loading: true
         }
     }
@@ -20,7 +20,7 @@ export class Area extends Component {
 
     componentDidMount() {
         //this.populateClientsDate();
-        const result = getData("https://localhost:7271/Area/all")
+        const result = getData("https://localhost:7271/Area/"+id)
         result.then((response) => {
             try {
                 console.log(response)
@@ -45,7 +45,7 @@ export class Area extends Component {
                 <h1 id="tabelLabel" className='align-center'>Areas</h1>
                 <div className="d-flex align-items-end">
                     <div>
-                        <Link to="/AdicionarArea"><button className='m-2 btn btn-success' >Criar nova Area</button></Link>
+                        <Link to="/AdicionarArea"><button className='m-2 btn btn-success' >Criar novo processo</button></Link>
                     </div>
                 </div>
                 {contents}

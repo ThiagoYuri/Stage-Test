@@ -1,6 +1,6 @@
 ﻿/* eslint-disable */
 import React from 'react';
-import './List.css'
+import './ListButton.css'
 const List = ({ datas }) => {
     //console.log(datas)
 

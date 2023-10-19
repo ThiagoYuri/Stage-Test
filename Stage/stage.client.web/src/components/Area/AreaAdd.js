@@ -33,7 +33,7 @@ const AreaAdd = () => {
     return (
         <div className='align-center'>
             <h1>Nova Area</h1>
-            <FormRoot schema={schema} config={config} event={SaveArea}></FormRoot>
+            <FormRoot schema={schema} config={config} event={SaveArea} returnPage={"/"}></FormRoot>
         </div>
     );
 
