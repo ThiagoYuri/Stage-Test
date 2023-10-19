@@ -26,9 +26,13 @@ de mostrar essa informação é um diferencial.
 
 
 ## Diagrama de Entidade e relacionamento
+![Alt text](image.png)
 
+## Features
 
-## Novas Features
-* Validação Empresa CNPJ
+* Implementação do Docker
+* Melhorias no front-end
+
+## Futuras Features
 * Caso queira monetizar esse serviço, Criar um sistema de login. (Segurança e Monetização)
-* 
+* Adicionar cadastro de Empresa
